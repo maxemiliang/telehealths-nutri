@@ -1,7 +1,7 @@
-import { Component, h } from "preact"
+import { Component, h, JSX } from "preact"
 import UserInfo from "./../elements/userInfo"
 
-export default class NavBar extends Component {
+export default class NavBar extends Component<{ handleClick: JSX.MouseEventHandler<any> }> {
     public render(): JSX.Element {
         return (
             <nav class="fixed px-12 py-5 w-full">

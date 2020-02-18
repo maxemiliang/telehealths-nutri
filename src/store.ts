@@ -8,8 +8,3 @@ export let actions = {
         user: user
     })
 }
-
-const { NODE_ENV } = process.env
-if (NODE_ENV === "development") {
-    store.subscribe(console.log)
-}
