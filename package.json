@@ -32,11 +32,11 @@
     "typescript": "^3.7.3"
   },
   "dependencies": {
+    "@ericblade/quagga2": "^0.0.18",
     "firebase": "^7.8.2",
     "node-sass": "^4.13.0",
     "preact": "^10.1.1",
     "preact-router": "^3.2.1",
-    "react-qr-reader": "^2.2.1",
     "sass-loader": "^8.0.0",
     "sweetalert2": "^9.7.2",
     "tailwindcss": "^1.1.4",

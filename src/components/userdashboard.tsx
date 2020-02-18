@@ -1,8 +1,8 @@
 import { Component, h } from "preact"
 import OpenFoodAPI, { defaultOptions } from "./../off"
-import QrReader from "react-qr-reader"
 import Header from "./DashboardComponents/header"
 import Button from "./../elements/button"
+import ScannerWrapper from "./DashboardComponents/scannerWrapper"
 
 export default class UserDashboard extends Component {
     public async test(): Promise<any> {
@@ -29,12 +29,7 @@ export default class UserDashboard extends Component {
                     <Button handleClick={this.test} classes="bg-orange-400 text-white">
                         Test me
                     </Button>
-                    <QrReader
-                        delay={300}
-                        onError={this.handleError}
-                        onScan={this.handleScan}
-                        style={{ width: "100%" }}
-                    />
+                    <ScannerWrapper></ScannerWrapper>
                 </div>
             </div>
         )
