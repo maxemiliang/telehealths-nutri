@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.gradient-1 {
+    background: linear-gradient(90deg, #7f7fd5 0%, #86a8e7 70%, #91eae4 100%);
+}
+
+.gradient-2 {
+    background: linear-gradient(90deg, #56ab2f 0%, #a8e063 100%);
+}
+
+nav {
+    background: linear-gradient(90deg, #56ab2f 0%, #a8e063 100%);
+}
