@@ -33,6 +33,8 @@
   },
   "dependencies": {
     "@ericblade/quagga2": "^0.0.18",
+    "@zxing/library": "^0.15.2",
+    "barcode-detector-polyfill": "^0.1.2",
     "firebase": "^7.8.2",
     "node-sass": "^4.13.0",
     "preact": "^10.1.1",
