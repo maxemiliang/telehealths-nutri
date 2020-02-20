@@ -4,7 +4,7 @@ import UserInfo from "./../elements/userInfo"
 export default class NavBar extends Component<{ handleClick: JSX.MouseEventHandler<any> }> {
     public render(): JSX.Element {
         return (
-            <nav class="fixed px-12 py-5 w-full">
+            <nav class="fixed md:px-12 px-5 py-5 w-full">
                 <ul class="flex justify-between">
                     <li class="logo">
                         <a href="/">
