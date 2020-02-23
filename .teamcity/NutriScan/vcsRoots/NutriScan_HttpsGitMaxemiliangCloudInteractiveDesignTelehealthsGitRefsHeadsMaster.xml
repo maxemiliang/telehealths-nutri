@@ -8,6 +8,7 @@
   <param name="ignoreKnownHosts" value="true" />
   <param name="secure:password" value="credentialsJSON:a89c22f2-e6cd-41a8-89c8-653631645740" />
   <param name="submoduleCheckout" value="CHECKOUT" />
+  <param name="teamcity:branchSpec" value="+:refs/heads/*" />
   <param name="url" value="https://git.maxemiliang.cloud/interactive-design/telehealths.git" />
   <param name="useAlternates" value="true" />
   <param name="username" value="maxemiliang" />
