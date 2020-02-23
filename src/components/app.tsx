@@ -10,6 +10,7 @@ import * as Sentry from "@sentry/browser"
 export default class App extends Component {
     public componentDidMount(): void {
         auth.onAuthStateChanged(user => {
+            if (user !== null) Sentry.setUser({ id: user.uid })
             store.setState({ user: user })
             this.forceUpdate()
         })
@@ -17,7 +18,6 @@ export default class App extends Component {
 
     public handleRoute = async (e): Promise<void> => {
         const currentUser = await getCurrentUser(auth)
-        Sentry.setUser({ id: currentUser.uid })
         switch (e.url) {
             case "/user":
                 if (!currentUser) route("/", true)
