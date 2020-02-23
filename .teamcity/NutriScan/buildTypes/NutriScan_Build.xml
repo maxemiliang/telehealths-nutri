@@ -8,7 +8,19 @@
       <option name="maximumNumberOfBuilds" value="1" />
     </options>
     <parameters />
-    <build-runners />
+    <build-runners>
+      <runner id="RUNNER_21" name="" type="simpleRunner">
+        <parameters>
+          <param name="plugin.docker.imageId" value="node:latest" />
+          <param name="plugin.docker.imagePlatform" value="linux" />
+          <param name="script.content"><![CDATA[yarn install
+yarn lint
+yarn build --no-prerender]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
     <vcs-settings>
       <vcs-entry-ref root-id="NutriScan_HttpsGitMaxemiliangCloudInteractiveDesignTelehealthsGitRefsHeadsMaster" />
     </vcs-settings>
