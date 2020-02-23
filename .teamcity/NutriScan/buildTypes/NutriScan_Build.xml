@@ -8,6 +8,7 @@
       <option name="maximumNumberOfBuilds" value="3" />
     </options>
     <parameters>
+      <param name="env.FIREBASE_TOKEN" value="credentialsJSON:f6d56917-40b7-49b9-b92b-fbef11072cd9" spec="password display='hidden' readOnly='true'" />
       <param name="env.SENTRY_AUTH_TOKEN" value="credentialsJSON:1dc535ae-7d20-4dba-a465-024daafd6474" spec="password display='hidden' readOnly='true'" />
       <param name="env.SENTRY_ORG" value="main" />
       <param name="env.SENTRY_URL" value="https://sentry.maxemiliang.cloud" />
