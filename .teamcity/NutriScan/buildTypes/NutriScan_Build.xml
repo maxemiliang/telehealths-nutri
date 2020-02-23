@@ -37,7 +37,9 @@ sentry-cli releases new -p nutriscan-frontend $VERSION
 # Associate commits with the release
 sentry-cli releases set-commits --auto $VERSION
 
-sentry-cli releases deploys $VERSION new -e production]]></param>
+sentry-cli releases deploys $VERSION new -e production
+
+sentry-cli releases files $VERSION upload-sourcemaps /build/]]></param>
           <param name="teamcity.step.mode" value="default" />
           <param name="use.custom.script" value="true" />
         </parameters>
