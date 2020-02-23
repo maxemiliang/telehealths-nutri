@@ -14,6 +14,7 @@
           <param name="plugin.docker.imageId" value="node:latest" />
           <param name="plugin.docker.imagePlatform" value="linux" />
           <param name="script.content"><![CDATA[yarn install
+yarn lint
 yarn build --no-prerender]]></param>
           <param name="teamcity.step.mode" value="default" />
           <param name="use.custom.script" value="true" />
