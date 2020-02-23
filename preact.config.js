@@ -31,7 +31,7 @@ export default function(config, env, helpers) {
 
     // Run styles through purgeCSS for production only
     if (env.production) {
-        //config.plugins.push(purgeCssPlugin)
+        config.plugins.push(purgeCssPlugin)
     }
 
     return config
