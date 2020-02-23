@@ -9,12 +9,6 @@
     </options>
     <parameters />
     <build-runners>
-      <runner id="RUNNER_19" name="Install Node" type="jonnyzzz.nvm">
-        <parameters>
-          <param name="teamcity.step.mode" value="default" />
-          <param name="version" value="12.16.1" />
-        </parameters>
-      </runner>
       <runner id="RUNNER_20" name="Install and build project" type="jonnyzzz.yarn">
         <parameters>
           <param name="teamcity.step.mode" value="default" />
