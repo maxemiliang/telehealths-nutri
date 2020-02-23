@@ -18,9 +18,8 @@ export default class Main extends Component {
             return
         }
         auth.signInWithPopup(googleAuthProvider)
-            .then(function(result) {
+            .then(function() {
                 // The signed-in user info.
-                const user = result.user
                 route("/user")
             })
             .catch(function(error) {
