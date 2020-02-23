@@ -8,16 +8,7 @@
       <option name="maximumNumberOfBuilds" value="1" />
     </options>
     <parameters />
-    <build-runners>
-      <runner id="RUNNER_20" name="Install and build project" type="jonnyzzz.yarn">
-        <parameters>
-          <param name="teamcity.step.mode" value="default" />
-          <param name="yarn_commands"><![CDATA[install
-lint
-build --no-prerender]]></param>
-        </parameters>
-      </runner>
-    </build-runners>
+    <build-runners />
     <vcs-settings>
       <vcs-entry-ref root-id="NutriScan_HttpsGitMaxemiliangCloudInteractiveDesignTelehealthsGitRefsHeadsMaster" />
     </vcs-settings>
