@@ -5,7 +5,7 @@ const glob = require("glob")
 // Custom PurgeCSS extractor for special characters in Tailwind's classnames
 class TailwindExtractor {
     static extract(content) {
-        return content.match(/[A-z0-9-:\/]+/g) || []
+        return content.match(/[\w-/:]+(?<!:)/g) || []
     }
 }
 
@@ -15,7 +15,7 @@ const purgeCssPlugin = new PurgecssPlugin({
     extractors: [
         {
             extractor: TailwindExtractor,
-            extensions: ["ts", "tsx"]
+            extensions: ["tsx", "css"]
         }
     ]
 })
