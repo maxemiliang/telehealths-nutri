@@ -1,5 +1,4 @@
 import firebase from "firebase"
-import Promise from "Promise"
 
 const firebaseConfig = {
     apiKey: "AIzaSyB6upPbnFTK5i9Pn33tXTad9yztf05juqk",

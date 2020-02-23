@@ -24,6 +24,7 @@ module.exports = {
         "@typescript-eslint/no-var-requires": "error"
     },
     env: {
-        browser: true
+        browser: true,
+        es6: true
     }
 }
