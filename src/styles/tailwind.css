@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@tailwind base; /* //NOSONAR */
+@tailwind components; /* //NOSONAR */
+@tailwind utilities; /* //NOSONAR */
 
 .gradient-1 {
     background: linear-gradient(90deg, #7f7fd5 0%, #86a8e7 70%, #91eae4 100%);
