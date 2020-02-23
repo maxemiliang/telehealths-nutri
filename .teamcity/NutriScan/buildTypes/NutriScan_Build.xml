@@ -7,7 +7,9 @@
       <option name="allowExternalStatus" value="true" />
       <option name="maximumNumberOfBuilds" value="3" />
     </options>
-    <parameters />
+    <parameters>
+      <param name="sonar.host.url" value="https://sonar.maxemiliang.cloud" />
+    </parameters>
     <build-runners>
       <runner id="RUNNER_21" name="Install and Build Project" type="simpleRunner">
         <parameters>
