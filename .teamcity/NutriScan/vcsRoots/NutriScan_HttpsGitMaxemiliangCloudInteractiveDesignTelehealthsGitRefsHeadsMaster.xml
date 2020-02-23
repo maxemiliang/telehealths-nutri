@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vcs-root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="02d27caf-8025-4bd4-a60a-88386a265465" type="jetbrains.git" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2018.1/project-config.xsd">
+  <name>https://git.maxemiliang.cloud/interactive-design/telehealths.git#refs/heads/master</name>
+  <param name="agentCleanFilesPolicy" value="ALL_UNTRACKED" />
+  <param name="agentCleanPolicy" value="ON_BRANCH_CHANGE" />
+  <param name="authMethod" value="PASSWORD" />
+  <param name="branch" value="refs/heads/master" />
+  <param name="ignoreKnownHosts" value="true" />
+  <param name="secure:password" value="credentialsJSON:a89c22f2-e6cd-41a8-89c8-653631645740" />
+  <param name="submoduleCheckout" value="CHECKOUT" />
+  <param name="url" value="https://git.maxemiliang.cloud/interactive-design/telehealths.git" />
+  <param name="useAlternates" value="true" />
+  <param name="username" value="maxemiliang" />
+  <param name="usernameStyle" value="USERID" />
+</vcs-root>
+
