@@ -2,8 +2,8 @@ import { Component, h, Ref, createRef } from "preact"
 import OpenFoodAPI, { defaultOptions } from "./../off"
 import Header from "./DashboardComponents/header"
 import Button from "./../elements/button"
-import { BrowserBarcodeReader } from "@zxing/library"
-export default class UserDashboard extends Component<{ video: Ref<HTMLVideoElement> }> {
+import { BrowserBarcodeReader, Exception } from "@zxing/library"
+export default class UserDashboard extends Component {
     public video = createRef()
 
     public handleScan(e): void {

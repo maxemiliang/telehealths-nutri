@@ -5,6 +5,7 @@ import { auth, getCurrentUser } from "./../firebase"
 import Router, { route } from "preact-router"
 import Main from "./main"
 import UserDashboard from "./userdashboard"
+import * as Sentry from "@sentry/browser"
 
 export default class App extends Component {
     public componentDidMount(): void {
@@ -14,10 +15,11 @@ export default class App extends Component {
         })
     }
 
-    public handleRoute = async e => {
+    public handleRoute = async (e): Promise<void> => {
+        const currentUser = await getCurrentUser(auth)
+        Sentry.setUser({ id: currentUser.uid })
         switch (e.url) {
             case "/user":
-                const currentUser = await getCurrentUser(auth)
                 if (!currentUser) route("/", true)
                 break
         }

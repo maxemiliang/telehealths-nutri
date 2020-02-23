@@ -6,7 +6,7 @@
   "scripts": {
     "build": "preact build",
     "watch": "preact watch",
-    "lint": "eslint src/**/*",
+    "lint": "eslint src/**/**/*.tsx",
     "lint:fix": "eslint src --fix",
     "test:compile": "tsc --noEmit",
     "storybook": "start-storybook -p 6001 -c .storybook"
