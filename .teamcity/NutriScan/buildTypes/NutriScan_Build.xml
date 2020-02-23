@@ -8,6 +8,7 @@
       <option name="maximumNumberOfBuilds" value="3" />
     </options>
     <parameters>
+      <param name="env.SENTRY_AUTH_TOKEN" value="credentialsJSON:1dc535ae-7d20-4dba-a465-024daafd6474" spec="password display='hidden' readOnly='true'" />
       <param name="sonar.host.url" value="https://sonar.maxemiliang.cloud" />
       <param name="sonarLogin" value="credentialsJSON:d86c4095-d706-485a-aeb2-e0313786a1ad" spec="password display='hidden' readOnly='true'" />
     </parameters>
