@@ -37,6 +37,16 @@ build --no-prerender]]></param>
         </parameters>
       </build-trigger>
     </build-triggers>
+    <build-extensions>
+      <extension id="BUILD_EXT_15" type="commit-status-publisher">
+        <parameters>
+          <param name="gitlabApiUrl" value="https://git.maxemiliang.cloud/api/v4" />
+          <param name="publisherId" value="gitlabStatusPublisher" />
+          <param name="secure:gitlabAccessToken" value="credentialsJSON:0c646d90-da38-4803-8860-7169b0fb4c36" />
+          <param name="vcsRootId" value="NutriScan_HttpsGitMaxemiliangCloudInteractiveDesignTelehealthsGitRefsHeadsMaster" />
+        </parameters>
+      </extension>
+    </build-extensions>
     <cleanup />
   </settings>
 </build-type>
