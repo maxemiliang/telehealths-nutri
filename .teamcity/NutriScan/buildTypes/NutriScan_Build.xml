@@ -7,7 +7,13 @@
       <option name="allowExternalStatus" value="true" />
       <option name="maximumNumberOfBuilds" value="3" />
     </options>
-    <parameters />
+    <parameters>
+      <param name="env.SENTRY_AUTH_TOKEN" value="credentialsJSON:1dc535ae-7d20-4dba-a465-024daafd6474" spec="password display='hidden' readOnly='true'" />
+      <param name="env.SENTRY_ORG" value="main" />
+      <param name="env.SENTRY_URL" value="https://sentry.maxemiliang.cloud" />
+      <param name="sonar.host.url" value="https://sonar.maxemiliang.cloud" />
+      <param name="sonarLogin" value="credentialsJSON:d86c4095-d706-485a-aeb2-e0313786a1ad" spec="password display='hidden' readOnly='true'" />
+    </parameters>
     <build-runners>
       <runner id="RUNNER_21" name="Install and Build Project" type="simpleRunner">
         <parameters>
@@ -18,6 +24,38 @@ yarn lint
 yarn build --no-prerender]]></param>
           <param name="teamcity.step.mode" value="default" />
           <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_22" name="Push releases to Sentry" type="simpleRunner">
+        <parameters>
+          <param name="plugin.docker.imageId" value="getsentry/sentry-cli:latest" />
+          <param name="script.content"><![CDATA[VERSION=build-%build.counter%
+# Create a release
+sentry-cli releases new -p nutriscan-frontend $VERSION
+
+# Associate commits with the release
+sentry-cli releases set-commits --auto $VERSION
+
+sentry-cli releases deploys $VERSION new -e production]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_24" name="Install Node for Sonar" type="jonnyzzz.nvm">
+        <parameters>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="version" value="12.16.1" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_23" name="Code Analysis" type="sonar-plugin">
+        <parameters>
+          <param name="sonarProjectKey" value="nutriscan" />
+          <param name="sonarProjectName" value="nutriscan" />
+          <param name="sonarProjectSources" value="src" />
+          <param name="sonarProjectVersion" value="build-%build.number%" />
+          <param name="sonarServer" value="f4fb5913-7e97-4b76-ac3f-13dba68ebbce" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="teamcity.tool.sonarquberunner" value="%teamcity.tool.sonar-qube-scanner.DEFAULT%" />
         </parameters>
       </runner>
     </build-runners>
