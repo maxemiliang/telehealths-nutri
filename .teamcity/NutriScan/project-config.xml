@@ -12,13 +12,11 @@
         <param name="showChanges" value="false" />
       </parameters>
     </extension>
-    <extension id="PROJECT_EXT_26" type="sonar-qube">
+    <extension id="PROJECT_EXT_27" type="sonar-qube">
       <parameters>
-        <param name="id" value="f4fb5913-7e97-4b76-ac3f-13dba68ebbce" />
-        <param name="login" value="test" />
-        <param name="name" value="test" />
-        <param name="password" value="zxx7ac2d3c3cdf0384d" />
-        <param name="url" value="test" />
+        <param name="id" value="78caafe4-04e9-4ffd-a425-84a25da1da06" />
+        <param name="name" value="server" />
+        <param name="url" value="server" />
       </parameters>
     </extension>
   </project-extensions>
