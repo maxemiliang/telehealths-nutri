@@ -46,6 +46,13 @@ build --no-prerender]]></param>
           <param name="vcsRootId" value="NutriScan_HttpsGitMaxemiliangCloudInteractiveDesignTelehealthsGitRefsHeadsMaster" />
         </parameters>
       </extension>
+      <extension id="BUILD_EXT_16" type="VcsLabeling">
+        <parameters>
+          <param name="labelingPattern" value="build-%system.build.number%" />
+          <param name="successfulOnly" value="true" />
+          <param name="vcsRootId" value="NutriScan_HttpsGitMaxemiliangCloudInteractiveDesignTelehealthsGitRefsHeadsMaster" />
+        </parameters>
+      </extension>
     </build-extensions>
     <cleanup />
   </settings>
