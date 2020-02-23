@@ -60,7 +60,7 @@ sentry-cli releases deploys $VERSION new -e production]]></param>
           <param name="teamcity.tool.sonarquberunner" value="%teamcity.tool.sonar-qube-scanner.DEFAULT%" />
         </parameters>
       </runner>
-      <runner id="RUNNER_25" name="" type="simpleRunner">
+      <runner id="RUNNER_25" name="Deploy App" type="simpleRunner">
         <parameters>
           <param name="script.content"><![CDATA[npm install -g firebase-tools
 firebase deploy --token "%env.FIREBASE_TOKEN%" --only "hosting" -m "Deploying build-%build.number%"]]></param>
