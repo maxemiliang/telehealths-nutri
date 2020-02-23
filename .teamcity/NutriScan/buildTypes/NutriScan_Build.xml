@@ -20,6 +20,21 @@ yarn build --no-prerender]]></param>
           <param name="use.custom.script" value="true" />
         </parameters>
       </runner>
+      <runner id="RUNNER_22" name="Push releases to Sentry" type="simpleRunner">
+        <parameters>
+          <param name="plugin.docker.imageId" value="getsentry/sentry-cli:latest" />
+          <param name="script.content"><![CDATA[VERSION=build-%build.counter%
+# Create a release
+sentry-cli releases new -p nutriscan-frontend $VERSION
+
+# Associate commits with the release
+sentry-cli releases set-commits --auto $VERSION
+
+sentry-cli releases deploys $VERSION new -e production]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
     </build-runners>
     <vcs-settings>
       <vcs-entry-ref root-id="NutriScan_HttpsGitMaxemiliangCloudInteractiveDesignTelehealthsGitRefsHeadsMaster" />
