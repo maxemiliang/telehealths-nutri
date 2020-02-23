@@ -8,6 +8,7 @@
       <option name="maximumNumberOfBuilds" value="3" />
     </options>
     <parameters>
+      <param name="env.FIREBASE_TOKEN" value="credentialsJSON:f6d56917-40b7-49b9-b92b-fbef11072cd9" spec="password display='hidden' readOnly='true'" />
       <param name="env.SENTRY_AUTH_TOKEN" value="credentialsJSON:1dc535ae-7d20-4dba-a465-024daafd6474" spec="password display='hidden' readOnly='true'" />
       <param name="env.SENTRY_ORG" value="main" />
       <param name="env.SENTRY_URL" value="https://sentry.maxemiliang.cloud" />
@@ -57,6 +58,14 @@ sentry-cli releases deploys $VERSION new -e production]]></param>
           <param name="sonarServer" value="78caafe4-04e9-4ffd-a425-84a25da1da06" />
           <param name="teamcity.step.mode" value="default" />
           <param name="teamcity.tool.sonarquberunner" value="%teamcity.tool.sonar-qube-scanner.DEFAULT%" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_25" name="Deploy App" type="simpleRunner">
+        <parameters>
+          <param name="script.content"><![CDATA[npm install -g firebase-tools
+firebase deploy --token "%env.FIREBASE_TOKEN%" --only "hosting" -m "Deploying build-%build.number%"]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
         </parameters>
       </runner>
     </build-runners>
