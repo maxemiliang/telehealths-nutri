@@ -53,6 +53,11 @@ build --no-prerender]]></param>
           <param name="vcsRootId" value="NutriScan_HttpsGitMaxemiliangCloudInteractiveDesignTelehealthsGitRefsHeadsMaster" />
         </parameters>
       </extension>
+      <extension id="InvestigationsAutoAssigner" type="InvestigationsAutoAssigner">
+        <parameters>
+          <param name="defaultAssignee.username" value="maxemiliang" />
+        </parameters>
+      </extension>
     </build-extensions>
     <cleanup />
   </settings>
