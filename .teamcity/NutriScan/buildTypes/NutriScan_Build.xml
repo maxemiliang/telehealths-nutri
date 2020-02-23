@@ -49,11 +49,12 @@ sentry-cli releases deploys $VERSION new -e production]]></param>
       </runner>
       <runner id="RUNNER_23" name="Code Analysis" type="sonar-plugin">
         <parameters>
+          <param name="additionalParameters" value="-Dsonar.exclusions=&quot;styles/**&quot;" />
           <param name="sonarProjectKey" value="nutriscan" />
           <param name="sonarProjectName" value="nutriscan" />
           <param name="sonarProjectSources" value="src" />
           <param name="sonarProjectVersion" value="build-%build.number%" />
-          <param name="sonarServer" value="f4fb5913-7e97-4b76-ac3f-13dba68ebbce" />
+          <param name="sonarServer" value="78caafe4-04e9-4ffd-a425-84a25da1da06" />
           <param name="teamcity.step.mode" value="default" />
           <param name="teamcity.tool.sonarquberunner" value="%teamcity.tool.sonar-qube-scanner.DEFAULT%" />
         </parameters>
