@@ -9,7 +9,7 @@
     </options>
     <parameters />
     <build-runners>
-      <runner id="RUNNER_21" name="" type="simpleRunner">
+      <runner id="RUNNER_21" name="Install and Build Project" type="simpleRunner">
         <parameters>
           <param name="plugin.docker.imageId" value="node:latest" />
           <param name="plugin.docker.imagePlatform" value="linux" />
