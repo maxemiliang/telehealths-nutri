@@ -10020,7 +10020,7 @@ preact-cli-postcss@^1.1.1:
   dependencies:
     eslint "^4.2.0"
 
-preact-cli@^3.0.0-rc.7:
+preact-cli@^3.0.0-rc.6:
   version "3.0.0-rc.9"
   resolved "https://registry.yarnpkg.com/preact-cli/-/preact-cli-3.0.0-rc.9.tgz#23e63fda8b09abf86e1ee3cee42cd0dead4541ef"
   integrity sha512-/4eRvULG77IzMqqG7LEOR7pDVpkLUEIu+iHlvUJaAWH4kE3PW3BBhE0UVc8cWJRCNeLhSwBHBraPGXNeQNis2Q==

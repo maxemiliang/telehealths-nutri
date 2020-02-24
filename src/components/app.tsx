@@ -14,7 +14,7 @@ export default class App extends Component {
             if (user !== null) Sentry.setUser({ id: user.uid })
             store.setState({ user: user })
             console.log(store.getState())
-            this.forceUpdate()
+            //this.forceUpdate()
         })
     }
 

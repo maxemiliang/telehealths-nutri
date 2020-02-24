@@ -4,11 +4,13 @@ import { useAction, useSelector, useStore } from "@preact-hooks/unistore"
 import { AppState, actions } from "./../store"
 import OpenFoodAPI, { defaultOptions } from "./../off"
 import Header from "./DashboardComponents/header"
+import Product from "./DashboardComponents/product"
 import Button from "./../elements/button"
 import { BrowserBarcodeReader, Exception, Result } from "@zxing/library"
 import * as Sentry from "@sentry/browser"
 import { Store } from "unistore"
 import { auth } from "./../firebase"
+import StatusAlert, { StatusAlertService } from "preact-status-alert"
 
 export default class UserDashboard extends Component {
     public video: RefObject<HTMLVideoElement> = useRef()
@@ -28,14 +30,15 @@ export default class UserDashboard extends Component {
             const file: File = e.target.files[0]
             const codeReader = new BrowserBarcodeReader()
 
-            reader.onload = async (): Promise<void> => {
+            const result = (reader.onload = async (): Promise<void> => {
                 const fileData: string | ArrayBuffer = reader.result
                 try {
                     const result = await codeReader.decodeFromImageUrl(fileData.toString())
+                    console.log(result)
                 } catch (err) {
                     console.error(err)
                 }
-            }
+            })
 
             reader.readAsDataURL(file)
         }
@@ -54,7 +57,7 @@ export default class UserDashboard extends Component {
         try {
             const result = await codeReader.decodeOnceFromVideoDevice(undefined, this.video.current)
             this.setScanning(false)
-            //codeReader.reset()
+            codeReader.reset()
             codeReader.stopAsyncDecode()
             await this.fetchResults(result)
         } catch (err) {
@@ -65,7 +68,8 @@ export default class UserDashboard extends Component {
     public async fetchResults(result: Result): Promise<void> {
         console.log("Result: ", result)
         const product = await this.Api.getProduct(result.getText())
-        this.store.setState({ currentProduct: product })
+        if (product.status === 1) this.store.setState({ currentProduct: product })
+        else StatusAlertService.showError("Product not found")
     }
 
     public componentDidCatch(error: any): void {
@@ -78,11 +82,13 @@ export default class UserDashboard extends Component {
 
     public render(): JSX.Element {
         this.currentStore = useSelector("user,isScanning,currentProduct")
-        console.log(this.currentStore)
+        let p = this.currentStore.currentProduct
+        console.log(p)
         return (
             <div>
+                <StatusAlert />
                 <div class="w-screen h-screen gradient-2 flex justify-center items-center">
-                    <div class="bg-white rounded-md p-10 pt-6" style="height: 97vh; width: 97vw">
+                    <div class="bg-white rounded-md p-10 pt-6 mt-5" style="height: 100%; width: 97vw">
                         <Header />
                         <h1 class="font-bold text-5xl text-gray-800">
                             Welcome back, {this.currentStore.user ? this.currentStore.user.displayName : ""}
@@ -94,15 +100,10 @@ export default class UserDashboard extends Component {
                             {this.currentStore.currentProduct ? "Scan another" : "Scan"}
                         </Button>
                         <div class={`${this.currentStore.isScanning ? "" : "hidden"}`}>
-                            <video
-                                ref={this.video}
-                                path=""
-                                width="300"
-                                height="200"
-                                style="border: 1px solid gray"
-                            ></video>
-                            <input onInput={this.handleScan} type="file" accept="image/*" capture />
+                            <video ref={this.video} path="" height="200" style="height: 400px; width: 100%"></video>
+                            <input class="hidden" onInput={this.handleScan} type="file" accept="image/*" capture />
                         </div>
+                        {p && p.status === 1 ? <Product info={p} /> : ""}
                     </div>
                 </div>
                 {this.hasError ? (
