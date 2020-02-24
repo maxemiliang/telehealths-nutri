@@ -1,10 +1,22 @@
 import createStore from "unistore"
+import { Result } from "@zxing/library"
 
-export let store = createStore({ user: null })
+export interface AppState {
+    user: any
+    isScanning: boolean
+    currentProduct: object
+}
+
+const initalState: AppState = { user: null, isScanning: false, currentProduct: null }
+
+export let store = createStore(initalState)
 
 export let actions = {
     // Actions can just return a state update:
     setUser: ({ user }): any => ({
         user: user
+    }),
+    setScanning: ({ isScanning }): any => ({
+        isScanning: !isScanning
     })
 }

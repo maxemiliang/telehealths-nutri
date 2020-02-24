@@ -1,5 +1,5 @@
 import { Component, h } from "preact"
-import { Provider } from "unistore/preact"
+import { StoreProvider } from "@preact-hooks/unistore"
 import { store } from "./../store"
 import { auth, getCurrentUser } from "./../firebase"
 import Router, { route } from "preact-router"
@@ -24,15 +24,14 @@ export default class App extends Component {
                 break
         }
     }
-
     public render(): JSX.Element {
         return (
-            <Provider store={store}>
+            <StoreProvider value={store} children={Router}>
                 <Router onChange={this.handleRoute}>
                     <Main path="/" />
                     <UserDashboard path="/user" />
                 </Router>
-            </Provider>
+            </StoreProvider>
         )
     }
 }

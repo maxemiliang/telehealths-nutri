@@ -7,8 +7,11 @@ import Header from "./header"
 import Button from "./../elements/button"
 import Section from "./section"
 import NavBar from "./navbar"
+import { useAction } from "@preact-hooks/unistore"
+import { actions } from "../store"
 
 export default class Main extends Component {
+    public setUser: any
     public scrollDown(): void {
         window.scrollTo({ top: 470, behavior: "smooth" })
     }
@@ -27,6 +30,8 @@ export default class Main extends Component {
                 StatusAlertService.showError(error.message)
             })
     }
+
+    public componentDidMount() {}
 
     public render(): JSX.Element {
         return (
