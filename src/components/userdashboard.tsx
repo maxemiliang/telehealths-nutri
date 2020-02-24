@@ -1,7 +1,7 @@
 import { Component, h, Ref, RefObject } from "preact"
 import { useRef } from "preact/hooks"
 import { useAction, useSelector, useStore } from "@preact-hooks/unistore"
-import { AppState, actions, actionFunctions } from "./../store"
+import { AppState, actions } from "./../store"
 import OpenFoodAPI, { defaultOptions } from "./../off"
 import Header from "./DashboardComponents/header"
 import Button from "./../elements/button"
@@ -32,7 +32,6 @@ export default class UserDashboard extends Component {
                 const fileData: string | ArrayBuffer = reader.result
                 try {
                     const result = await codeReader.decodeFromImageUrl(fileData.toString())
-                    this.setCurrentScan(result)
                 } catch (err) {
                     console.error(err)
                 }
@@ -55,7 +54,8 @@ export default class UserDashboard extends Component {
         try {
             const result = await codeReader.decodeOnceFromVideoDevice(undefined, this.video.current)
             this.setScanning(false)
-            codeReader.reset()
+            //codeReader.reset()
+            codeReader.stopAsyncDecode()
             await this.fetchResults(result)
         } catch (err) {
             console.error(err)
@@ -77,7 +77,7 @@ export default class UserDashboard extends Component {
     }
 
     public render(): JSX.Element {
-        this.currentStore = useSelector<AppState, any>("user,isScanning,currentProduct")
+        this.currentStore = useSelector("user,isScanning,currentProduct")
         console.log(this.currentStore)
         return (
             <div>

@@ -1,17 +1,19 @@
 import { Component, h } from "preact"
 import { StoreProvider } from "@preact-hooks/unistore"
-import { store } from "./../store"
-import { auth, getCurrentUser } from "./../firebase"
+import { store } from "../store"
+import { auth, getCurrentUser } from "../firebase"
 import Router, { route } from "preact-router"
 import Main from "./main"
 import UserDashboard from "./userdashboard"
 import * as Sentry from "@sentry/browser"
+import { StoreComponent } from "./store"
 
 export default class App extends Component {
     public componentDidMount(): void {
         auth.onAuthStateChanged(user => {
             if (user !== null) Sentry.setUser({ id: user.uid })
             store.setState({ user: user })
+            console.log(store.getState())
             this.forceUpdate()
         })
     }
@@ -26,12 +28,12 @@ export default class App extends Component {
     }
     public render(): JSX.Element {
         return (
-            <StoreProvider value={store} children={Router}>
+            <StoreComponent>
                 <Router onChange={this.handleRoute}>
                     <Main path="/" />
                     <UserDashboard path="/user" />
                 </Router>
-            </StoreProvider>
+            </StoreComponent>
         )
     }
 }

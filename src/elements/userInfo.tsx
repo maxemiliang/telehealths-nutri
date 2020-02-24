@@ -13,7 +13,7 @@ function logout(): void {
 }
 
 export default function UserInfo(props: RenderableProps<{ dark?: boolean; showName?: boolean }>): JSX.Element {
-    const user = useSelector<AppState, any>("user").user
+    const user = useSelector("user").user
     console.log(user)
     if (user != null)
         return (
