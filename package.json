@@ -40,8 +40,8 @@
     "node-sass": "^4.13.0",
     "preact": "^10.1.1",
     "preact-router": "^3.2.1",
+    "preact-status-alert": "^0.2.7",
     "sass-loader": "^8.0.0",
-    "sweetalert2": "^9.7.2",
     "tailwindcss": "^1.1.4",
     "unistore": "^3.5.1"
   }

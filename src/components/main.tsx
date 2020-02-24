@@ -1,7 +1,8 @@
 import { Component, h, JSX } from "preact"
 import { route } from "preact-router"
 import { auth, googleAuthProvider } from "./../firebase"
-import Swal from "sweetalert2"
+import StatusAlert, { StatusAlertService } from "preact-status-alert"
+import "preact-status-alert/dist/status-alert.css"
 import Header from "./header"
 import Button from "./../elements/button"
 import Section from "./section"
@@ -23,18 +24,14 @@ export default class Main extends Component {
                 route("/user")
             })
             .catch(function(error) {
-                Swal.fire({
-                    title: "Error logging in!",
-                    text: error.message,
-                    icon: "error",
-                    confirmButtonText: "Try again"
-                })
+                StatusAlertService.showError(error.message)
             })
     }
 
     public render(): JSX.Element {
         return (
             <div>
+                <StatusAlert />
                 <NavBar handleClick={this.login} />
                 <Header>
                     <h1 class="text-3xl font-bold mb-2 text-white">Are you worried about what you eat?</h1>
