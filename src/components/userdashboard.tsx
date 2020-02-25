@@ -9,8 +9,11 @@ import Button from "./../elements/button"
 import { BrowserBarcodeReader, Exception, Result } from "@zxing/library"
 import * as Sentry from "@sentry/browser"
 import { Store } from "unistore"
-import { auth } from "./../firebase"
+import { auth, db } from "./../firebase"
 import StatusAlert, { StatusAlertService } from "preact-status-alert"
+import { syncMeal } from "../apiCalls"
+import MealsList from "./DashboardComponents/mealslist"
+import Graphs from "./DashboardComponents/graphs"
 
 export default class UserDashboard extends Component {
     public video: RefObject<HTMLVideoElement> = useRef()
@@ -22,6 +25,7 @@ export default class UserDashboard extends Component {
     public setUser: any
     public Api: OpenFoodAPI = new OpenFoodAPI(defaultOptions)
     public store: Store<AppState> = useStore()
+    public unsub: any
 
     public handleScan(e): void {
         const files: FileList = e.target.files
@@ -46,10 +50,32 @@ export default class UserDashboard extends Component {
 
     public componentDidUpdate(): void {
         if (this.currentStore.isScanning && !this.currentStore.currentScan) this.setupScanner()
+        if (this.currentStore.user && !this.unsub) {
+            this.unsub = db
+                .collection("user_data")
+                .where("userId", "==", this.currentStore.user.uid)
+                .onSnapshot(snapshot => {
+                    if (!snapshot.empty) {
+                        let meals
+                        snapshot.forEach(doc => {
+                            meals = doc.data()
+                        })
+                        this.store.setState({ userMeals: meals })
+                    }
+                })
+                .bind(this)
+        }
     }
 
-    public componentDidMount() {
+    public async componentDidMount() {
         this.setScanning = useAction(actions.setScanning)
+        this.store.subscribe(async appState => {
+            if (appState.savedMeal != null) {
+                StatusAlertService.showSuccess("Saved meal")
+                await syncMeal(appState.currentProduct, appState.savedMeal)
+                this.store.setState({ savedMeal: null, tempValue: null })
+            }
+        })
     }
 
     public async setupScanner(): Promise<void> {
@@ -80,8 +106,12 @@ export default class UserDashboard extends Component {
         })
     }
 
+    public componentWillUnmount() {
+        this.unsub()
+    }
+
     public render(): JSX.Element {
-        this.currentStore = useSelector("user,isScanning,currentProduct")
+        this.currentStore = useSelector("user,isScanning,currentProduct,userMeals")
         let p = this.currentStore.currentProduct
         console.log(p)
         return (
@@ -104,6 +134,14 @@ export default class UserDashboard extends Component {
                             <input class="hidden" onInput={this.handleScan} type="file" accept="image/*" capture />
                         </div>
                         {p && p.status === 1 ? <Product info={p} /> : ""}
+                        <div class={`${this.currentStore.userMeals ? "" : "hidden"} mt-5`}>
+                            <h3 class="text-2xl text-gray-800 font-bold">Here are your recent meals:</h3>
+                            <MealsList meals={this.currentStore.userMeals} />
+                        </div>
+                        <div class={`${this.currentStore.userMeals ? "" : "hidden"} mt-5`}>
+                            <h3 class="text-2xl text-gray-800 font-bold">Here is an overview of your intake:</h3>
+                            <Graphs meals={this.currentStore.userMeals} />
+                        </div>
                     </div>
                 </div>
                 {this.hasError ? (

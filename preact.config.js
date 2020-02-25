@@ -24,6 +24,10 @@ export default function(config, env, helpers) {
     // Use postcss.config.js instead of default postCSS config
     preactCliPostCSS(config, helpers)
 
+    config.resolve.alias["react"] = "preact/compat"
+    config.resolve.alias["react-dom"] = "preact/compat"
+    config.resolve.alias["preact-compat"] = "preact/compat"
+
     config.module.rules.push({
         test: /\.tsx?$/,
         loader: require.resolve("ts-loader")
