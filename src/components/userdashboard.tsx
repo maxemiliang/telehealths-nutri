@@ -117,7 +117,7 @@ export default class UserDashboard extends Component {
         return (
             <div>
                 <StatusAlert />
-                <div class="w-screen h-screen gradient-2 flex justify-center items-center">
+                <div class="h-screen gradient-2 flex justify-center items-center" style="width: 98.5vw">
                     <div class="bg-white rounded-md p-10 pt-6 mt-5" style="height: 100%; width: 97vw">
                         <Header />
                         <h1 class="font-bold text-5xl text-gray-800">
@@ -140,7 +140,7 @@ export default class UserDashboard extends Component {
                         </div>
                         <div class={`${this.currentStore.userMeals ? "" : "hidden"} mt-5`}>
                             <h3 class="text-2xl text-gray-800 font-bold">Here is an overview of your intake:</h3>
-                            <Graphs meals={this.currentStore.userMeals} />
+                            <img class="w-full" src="./../assets/maxresdefault.jpg" alt="line-graph" />
                         </div>
                     </div>
                 </div>
